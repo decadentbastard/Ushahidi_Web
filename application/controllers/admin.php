@@ -59,6 +59,7 @@ class Admin_Controller extends Template_Controller
 
 		// Set Table Prefix
 		$this->table_prefix = Kohana::config('database.default.table_prefix');
+    Kohana::config_set('locale.language', "en_US");
 
 		//fetch latest release of ushahidi
 		$this->release = $upgrade->_fetch_core_release();
