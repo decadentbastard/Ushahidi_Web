@@ -21,20 +21,10 @@
 		<!-- main body -->
 		<div id="middle">
 			<!-- header -->
+    <div id="top">
+    </div>
 		<div id="header">
 
-			<!-- searchbox -->
-			<div id="searchbox">
-				<!-- languages -->
-				<?php echo $languages;?>
-				<!-- / languages -->
-
-				<!-- searchform -->
-				<?php echo $search; ?>
-				<!-- / searchform -->
-
-			</div>
-			<!-- / searchbox -->
 
 			<!-- logo -->
 			<div id="logo">
@@ -57,6 +47,10 @@
 					<ul>
 						<?php nav::main_tabs($this_page); ?>
 					</ul>
+          <!-- languages -->
+          <?php echo $languages;?>
+          <!-- / languages -->
+
 
 				</div>
 				<!-- / mainmenu -->

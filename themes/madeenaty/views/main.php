@@ -208,7 +208,10 @@
 					<tr>
 						<th scope="col" class="title"><?php echo Kohana::lang('ui_main.title'); ?></th>
 						<th scope="col" class="location"><?php echo Kohana::lang('ui_main.location'); ?></th>
+						<th scope="col" class="date"><?php echo Kohana::lang('ui_main.category'); ?></th>
+            <th scope="col" class="location"><?php echo Kohana::lang('ui_main.supporters'); ?></th>
 						<th scope="col" class="date"><?php echo Kohana::lang('ui_main.date'); ?></th>
+						<th scope="col" class="location"><?php echo Kohana::lang('ui_main.support'); ?></th>
 					</tr>
 				</thead>
 				<tbody>
@@ -227,11 +230,43 @@
 						$incident_date = $incident->incident_date;
 						$incident_date = date('M j Y', strtotime($incident->incident_date));
 						$incident_location = $incident->location->location_name;
+            $incident_votes = $incident->incident_votes;
+            $categories = $incident->category;
+            $cat = "";
+            $first = true;
+            foreach ($categories as $category)
+            {
+              // Check for localization of parent category
+
+		          $l = Kohana::config('locale.language.0');
+              $translated_title = Category_Lang_Model::category_title($category->id,$l);
+
+              if($translated_title)
+              {
+                $display_title = $translated_title;
+              }else{
+                $display_title = $category->category_title;
+              }
+              if (!$first)
+              {
+                $cat . ", " . $display_title;
+              } else {
+                $cat = $display_title;
+                $first = false;
+              }
+            }
 					?>
 					<tr>
 						<td><a href="<?php echo url::site() . 'reports/view/' . $incident_id; ?>"> <?php echo $incident_title ?></a></td>
 						<td><?php echo $incident_location ?></td>
+						<td><?php echo $cat; ?></td>
+						<td><?php echo $incident_votes; ?></td>
 						<td><?php echo $incident_date; ?></td>
+            <td>
+            <form action="<?php echo url::site() . 'reports/support/'. $incident_id; ?>">
+            <a href="" class="support">+</a>
+            </form>
+            </td>
 					</tr>
 					<?php
 					}

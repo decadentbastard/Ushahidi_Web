@@ -1222,6 +1222,20 @@ class Reports_Controller extends Main_Controller {
 			return TRUE;
 		}
 	}
+  
+  public function support($id=0)
+  {
+		$this->template->header->this_page = 'reports';
+		$this->template->content = new View('reports_support');
+		$this->template->header->header_block = $this->themes->header_block();
+		$incidents = ORM::factory("incident")
+			->where("incident_active", 1)
+			->where("id", $id)->find_all();
+    foreach ($incidents as $incident) {
+      $incident->incident_votes = $incident->incident_votes+1;
+      $incident->save();
+    }
+  }
 
 
 	/**

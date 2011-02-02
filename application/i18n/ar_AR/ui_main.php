@@ -421,6 +421,8 @@
 	'submit_sms2' => 'على تليفونك',
 	'success' => '!نجحت',
 	'successfuly_imported' => 'تم الاستيراد بنجاح',
+  'supporters' => 'مساندين',
+  'support' => 'ساند',
 	'surname' => 'اسم العائلة',
 	'system' => 'نظام',
 	'tcp_port' => 'TCP Port',

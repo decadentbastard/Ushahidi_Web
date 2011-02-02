@@ -68,6 +68,7 @@
 	'submit_sms' => 'Envoyer par SMS',
 	'submit_sms1' => 'Envoyez votre SMS au',
 	'submit_sms2' => 'sur votre téléphone',
+  'supporters' => 'Supporteurs', 
 	'time' => 'heure',
 	'title' => 'TITRE',
 	'video' => 'Vidéo',

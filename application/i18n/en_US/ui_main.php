@@ -431,6 +431,8 @@
 	'success' => 'Success!',
 	'successfuly_imported' => 'Succesfully imported',
 	'surname' => 'Surname',
+  'supporters' => 'Supporters', 
+  'support' => 'Support', 
 	'system' => 'System',
 	'tcp_port' => 'TCP Port',
 	'themes' => 'Themes',

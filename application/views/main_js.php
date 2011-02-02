@@ -413,7 +413,13 @@
 			document.getElementById('mapProjection').innerHTML = map.projection;
 				
 			gMap = map;
-			
+		
+      $('.support').click(function() 
+      {
+        $(this).parent().submit();
+        return false;
+      });
+	
 			// Category Switch Action
 			$("a[id^='cat_']").click(function()
 			{
