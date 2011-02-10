@@ -87,7 +87,15 @@
 		?>
 	
 	</div>
+  </div>
 	
+	
+	<div style="clear:both;"></div>
+	
+	
+	
+	
+</div>
 	<div style="float:right;width:350px;">
 
 		<div class="report-media-box-tabs">
@@ -156,10 +164,3 @@
 		</div>
 
 	</div>
-	
-	<div style="clear:both;"></div>
-	
-	
-	
-	
-</div>
