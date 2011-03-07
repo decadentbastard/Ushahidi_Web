@@ -625,6 +625,21 @@
 				gTimeline.playOrPause('raindrops');
 			});
 		});
+
+		function support(id,loader)
+		{
+			$('#' + loader).html('<img src="<?php echo url::base() . "media/img/loading_g.gif"; ?>">');
+			$.post("<?php echo url::site() . 'reports/support/' ?>" + id,
+				function(data){
+					if (data.status == 'saved'){
+            $('#oup_' + id).attr("src","<?php echo url::base() . 'media/img/'; ?>gray_up.png");
+						$('#support_' + id).html(data.supporters);
+					} else {
+						alert('ERROR!');
+					}
+					$('#' + loader).html('');
+			  	}, "json");
+		}
 		
 		/*		
 		d = $('#startDate > optgroup > option').map(function()
@@ -636,4 +651,4 @@
 		{
 			return n > '1183240800';
 		})[0];
-*/
+    */

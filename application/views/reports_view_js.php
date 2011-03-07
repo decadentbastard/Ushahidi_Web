@@ -242,7 +242,7 @@
 			// jQuery("div#slider2").codaSlider()
 			// etc, etc. Beware of cross-linking difficulties if using multiple sliders on one page.
 		});
-		
+
 		function rating(id,action,type,loader)
 		{
 			$('#' + loader).html('<img src="<?php echo url::base() . "media/img/loading_g.gif"; ?>">');
@@ -266,3 +266,5 @@
 					$('#' + loader).html('');
 			  	}, "json");
 		}
+
+	

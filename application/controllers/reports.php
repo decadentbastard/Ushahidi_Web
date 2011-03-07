@@ -1225,15 +1225,38 @@ class Reports_Controller extends Main_Controller {
   
   public function support($id=0)
   {
-		$this->template->header->this_page = 'reports';
-		$this->template->content = new View('reports_support');
-		$this->template->header->header_block = $this->themes->header_block();
-		$incidents = ORM::factory("incident")
-			->where("incident_active", 1)
-			->where("id", $id)->find_all();
-    foreach ($incidents as $incident) {
-      $incident->incident_votes = $incident->incident_votes+1;
+		$this->template = "";
+		$this->auto_render = FALSE;
+		if (!$id)
+		{
+			echo json_encode(array("status"=>"error", "message"=>"ERROR!"));
+		} else {
+      $previous = ORM::factory('vote')
+                  ->where('incident_id',$id)
+                  ->where('vote_ip',$_SERVER['REMOTE_ADDR'])
+                  ->find();
+      if ($previous->id  ==  0)  {
+        $vote = new Vote_Model();
+        $vote->vote_ip = $_SERVER['REMOTE_ADDR'];
+				$vote->vote_date = date("Y-m-d H:i:s",time());
+        $vote->incident_id = $id;
+        $vote->save();
+      }
+
+      $total_supporters = 0;
+      // Get total rating and send back to json
+			foreach (ORM::factory('vote')
+							->where('incident_id',$id)
+							->find_all() as $vote)
+			{
+				$total_supporters += 1;
+			}
+
+      $incident = ORM::factory('incident')->where('id', $id)->find();
+      $incident->incident_supporters = $total_supporters;
       $incident->save();
+
+      echo json_encode(array("status"=>"saved", "message"=>"SAVED!", "supporters"=>$total_supporters));
     }
   }
 

@@ -230,7 +230,7 @@
 						$incident_date = $incident->incident_date;
 						$incident_date = date('M j Y', strtotime($incident->incident_date));
 						$incident_location = $incident->location->location_name;
-            $incident_votes = $incident->incident_votes;
+            $incident_supporters = $incident->incident_supporters;
             $categories = $incident->category;
             $cat = "";
             $first = true;
@@ -257,15 +257,13 @@
             }
 					?>
 					<tr>
-						<td><a href="<?php echo url::site() . 'reports/view/' . $incident_id; ?>"> <?php echo $incident_title ?></a></td>
+						<td><a href="<?php echo url::site() . 'reports/support/' . $incident_id; ?>"> <?php echo $incident_title ?></a></td>
 						<td><?php echo $incident_location ?></td>
 						<td><?php echo $cat; ?></td>
-						<td><?php echo $incident_votes; ?></td>
+						<td id="support_<?php echo $incident_id; ?>"><?php echo $incident_supporters ?></td>
 						<td><?php echo $incident_date; ?></td>
             <td>
-            <form action="<?php echo url::site() . 'reports/support/'. $incident_id; ?>">
-            <a href="" class="support">+</a>
-            </form>
+            <a href="" onclick="javascript:support('<?php echo $incident_id; ?>','oloader_<?php echo $incident_id; ?>');" class="support">+</a>
             </td>
 					</tr>
 					<?php
