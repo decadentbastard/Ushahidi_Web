@@ -20,9 +20,9 @@
 
 		<!-- main body -->
 		<div id="middle">
-			<!-- header -->
+			<!-- header 
     <div id="top">
-    </div>
+    </div>-->
 		<div id="header">
 
 

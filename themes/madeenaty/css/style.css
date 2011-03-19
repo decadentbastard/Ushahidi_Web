@@ -78,7 +78,7 @@ body{
 }
 
 body#page{
-    background: #999999;
+    background: #000;
 }
 
 /* wrapper setup */
@@ -96,31 +96,36 @@ div#top {
 
 /* header */
 div#header{
-    background-color: #339936;
     position: relative;
-    height: 144px;
     margin: 10px 10px 10px 10px;
+    background: #fff;
 }
 
 /* logo */
 div#logo{
-    background-color: #339936;
     border: 0;
-    padding: 35px 55px 5px 5px;
+    background: #fff;
+    background-image: url('../images/cityscape.png');
+    background-repeat: no-repeat;
+    background-position: right bottom;
+    padding: 25px 55px 5px 5px;
     float: right;
     margin: 14px 0 0 0;
-    width: 300px;
+    height: 70px;
+    width: 880px;
 }
 div#logo h1{
 	margin:0;
-	padding:5px;
-  color: #ffffff;
+  padding-top:0px;
+	padding-left:755px;
+  color: #000;
 	font-size:60px;
   display: inline;
 }
 div#logo span{
-  color: #ffffff;
-	font-size:24px;
+	padding-left:755px;
+  color: #000;
+	font-size:20px;
 }
 
 /* logo */
@@ -198,7 +203,6 @@ div#equalright{
 div#main{
     width: auto;
     margin: 0px 0px 0px 0px;
-    padding: 0px 29px;
 }
 
 div#mainmiddle{
