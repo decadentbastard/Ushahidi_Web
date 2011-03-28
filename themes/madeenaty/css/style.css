@@ -108,16 +108,17 @@ div#logo{
     background-image: url('../images/cityscape.png');
     background-repeat: no-repeat;
     background-position: right bottom;
-    padding: 25px 55px 5px 5px;
+    padding: 5px 5px 5px 5px;
     float: right;
     margin: 14px 0 0 0;
-    height: 70px;
-    width: 880px;
+    height: 80px;
+    width: 930px;
 }
 div#logo h1{
-	margin:0;
+  position: absolute;
   padding-top:0px;
-	padding-left:755px;
+	padding-left:795px;
+  margin-top:0px;
   color: #000;
 	font-size:60px;
   display: inline;
@@ -126,6 +127,29 @@ div#logo span{
 	padding-left:755px;
   color: #000;
 	font-size:20px;
+}
+
+div#logo ul{
+    padding: 0px;
+    margin: 0px;
+    list-style: none;
+}
+
+div#logo li{
+    float: left;
+    display: block;
+    margin-right: 15px;
+}
+
+div#logo a{
+    display: block;
+    position: relative;
+    padding: 2px 4px;
+    color: #000;
+    overflow: hidden;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 120%;
 }
 
 /* logo */
@@ -453,6 +477,41 @@ a.share{
     text-indent:-2000px;
     width:125px;
     height: 18px;
+}
+
+
+div#map-tab-cnt {
+  width: 250px;
+  height: 41px;
+  margin-left: 30px;
+}
+
+div#map-submit-tab {
+    background: url('../images/tab.png') no-repeat center;
+    height: 42px;
+    width: 122px;
+    float: left;
+}
+
+div#map-submit-tab p {
+    padding: 4px;
+    margin-left: 5px;
+    font-size: 16px;
+    color: #fff;
+}
+
+div#map-subscribe-tab {
+    background: url('../images/tab.png') no-repeat center;
+    height: 42px;
+    width: 122px;
+    float: right;
+}
+
+div#map-subscribe-tab p {
+    margin-left: 5px;
+    padding: 4px;
+    font-size: 16px;
+    color: #fff;
 }
 
 /* map */

@@ -162,7 +162,7 @@
 		<div id="content" class="clearingfix">
 			<div class="floatbox">
 			
-				<!-- filters -->
+				<!-- filters
 				<div class="filters clearingfix">
 					<div style="float:left; width: 100%">
 						<strong><?php echo Kohana::lang('ui_main.filters'); ?></strong>
@@ -179,8 +179,16 @@
 					Event::run('ushahidi_action.map_main_filters');
 					?>
 				</div>
-				<!-- / filters -->
-				
+				 / filters -->
+		
+        <div id="map-tab-cnt">	
+          <div id="map-submit-tab">
+            <p> Submit <br> a report </p>
+          </div>	
+          <div id="map-subscribe-tab">
+            <p> Subscribe to this region </p>
+          </div>	
+        </div>
 				<?php								
 				// Map and Timeline Blocks
 				echo $div_map;

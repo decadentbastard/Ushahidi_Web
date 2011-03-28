@@ -20,16 +20,21 @@
 
 		<!-- main body -->
 		<div id="middle">
-			<!-- header 
+    <!--
     <div id="top">
-    </div>-->
+    </div>
+    -->
+    <!-- / mainmenu -->
 		<div id="header">
-
-
 			<!-- logo -->
 			<div id="logo">
+          <!-- languages -->
+          <?php echo $languages;?>
+          <!-- languages -->
+          <ul>
+            <?php nav::main_tabs($this_page); ?>
+          </ul>
 				<h1><?php echo $site_name; ?></h1>
-        <span><?php echo $site_tagline; ?></span>
 			</div>
 			<!-- / logo -->
 			
@@ -43,14 +48,3 @@
 		<div class="background layoutleft">
 
 				<!-- mainmenu -->
-				<div id="mainmenu" class="clearingfix">
-					<ul>
-						<?php nav::main_tabs($this_page); ?>
-					</ul>
-          <!-- languages -->
-          <?php echo $languages;?>
-          <!-- / languages -->
-
-
-				</div>
-				<!-- / mainmenu -->
