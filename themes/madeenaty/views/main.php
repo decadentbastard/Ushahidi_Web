@@ -1,5 +1,5 @@
 <!-- main body -->
-<div id="main" class="clearingfix">
+<div id="main" class="clearingfix" style="padding: 6px;">
 	<div id="mainmiddle" class="floatbox withright">
 
 	<?php if($site_message != '') { ?>
@@ -9,151 +9,79 @@
 	<?php } ?>
 
 		<!-- right column -->
-		<div id="right" class="clearingfix">
-	
-			<!-- category filters -->
-			<div class="cat-filters clearingfix">
-				<strong><?php echo Kohana::lang('ui_main.category_filter');?> <span>[<a href="javascript:toggleLayer('category_switch_link', 'category_switch')" id="category_switch_link"><?php echo Kohana::lang('ui_main.hide'); ?></a>]</span></strong>
-			</div>
-		
-			<ul id="category_switch" class="category-filters">
-				<li><a class="active" id="cat_0" href="#"><span class="swatch" style="background-color:<?php echo "#".$default_map_all;?>"></span><span class="category-title"><?php echo Kohana::lang('ui_main.all_categories');?></span></a></li>
-				<?php
-					foreach ($categories as $category => $category_info)
-					{
-						$category_title = $category_info[0];
-						$category_color = $category_info[1];
-						$category_image = '';
-						$color_css = 'class="swatch" style="background-color:#'.$category_color.'"';
-						if($category_info[2] != NULL && file_exists(Kohana::config('upload.relative_directory').'/'.$category_info[2])) {
-							$category_image = html::image(array(
-								'src'=>Kohana::config('upload.relative_directory').'/'.$category_info[2],
-								'style'=>'float:left;padding-right:5px;'
-								));
-							$color_css = '';
-						}
-						echo '<li><a href="#" id="cat_'. $category .'"><span '.$color_css.'>'.$category_image.'</span><span class="category-title">'.$category_title.'</span></a>';
-						// Get Children
-						echo '<div class="hide" id="child_'. $category .'">';
-                                                if( sizeof($category_info[3]) != 0)
-                                                {
-                                                    echo '<ul>';
-                                                    foreach ($category_info[3] as $child => $child_info)
-                                                    {
-                                                            $child_title = $child_info[0];
-                                                            $child_color = $child_info[1];
-                                                            $child_image = '';
-                                                            $color_css = 'class="swatch" style="background-color:#'.$child_color.'"';
-                                                            if($child_info[2] != NULL && file_exists(Kohana::config('upload.relative_directory').'/'.$child_info[2])) {
-                                                                    $child_image = html::image(array(
-                                                                            'src'=>Kohana::config('upload.relative_directory').'/'.$child_info[2],
-                                                                            'style'=>'float:left;padding-right:5px;'
-                                                                            ));
-                                                                    $color_css = '';
-                                                            }
-                                                            echo '<li style="padding-left:20px;"><a href="#" id="cat_'. $child .'"><span '.$color_css.'>'.$child_image.'</span><span class="category-title">'.$child_title.'</span></a></li>';
-                                                    }
-                                                    echo '</ul>';
-                                                }
-						echo '</div></li>';
-					}
-				?>
-			</ul>
-			<!-- / category filters -->
-			
-			<?php
-			if ($layers)
-			{
-				?>
-				<!-- Layers (KML/KMZ) -->
-				<div class="cat-filters clearingfix" style="margin-top:20px;">
-					<strong><?php echo Kohana::lang('ui_main.layers_filter');?> <span>[<a href="javascript:toggleLayer('kml_switch_link', 'kml_switch')" id="kml_switch_link"><?php echo Kohana::lang('ui_main.hide'); ?></a>]</span></strong>
-				</div>
-				<ul id="kml_switch" class="category-filters">
+		<div id="right" class="clearingfix" style="border: solid 1px #999; margin-top: 41px; height: 381px; width: 350px; padding-top: 5px;">
+			<h5><?php echo Kohana::lang('ui_main.incidents_listed'); ?></h5>
+			<table class="table-list">
+				<thead>
+					<tr>
+						<th scope="col" class="title"><?php echo Kohana::lang('ui_main.title'); ?></th>
+						<th scope="col" class="date"><?php echo Kohana::lang('ui_main.date'); ?></th>
+						<th scope="col" class="location"><?php echo Kohana::lang('ui_main.location'); ?></th>
+						<th scope="col" class="date"><?php echo Kohana::lang('ui_main.category'); ?></th>
+						<th scope="col" class="location"><?php echo Kohana::lang('ui_main.support'); ?></th>
+            <th scope="col" class="location"><?php echo Kohana::lang('ui_main.supporters'); ?></th>
+					</tr>
+				</thead>
+				<tbody>
 					<?php
-					foreach ($layers as $layer => $layer_info)
+						if ($total_items == 0)
 					{
-						$layer_name = $layer_info[0];
-						$layer_color = $layer_info[1];
-						$layer_url = $layer_info[2];
-						$layer_file = $layer_info[3];
-						$layer_link = (!$layer_url) ?
-							url::base().Kohana::config('upload.relative_directory').'/'.$layer_file :
-							$layer_url;
-						echo '<li><a href="#" id="layer_'. $layer .'"
-						onclick="switchLayer(\''.$layer.'\',\''.$layer_link.'\',\''.$layer_color.'\'); return false;"><div class="swatch" style="background-color:#'.$layer_color.'"></div>
-						<div>'.$layer_name.'</div></a></li>';
-					}
 					?>
-				</ul>
-				<!-- /Layers -->
-				<?php
-			}
-			?>
-			
-			
-			<?php
-			if ($shares)
-			{
-				?>
-				<!-- Layers (Other Ushahidi Layers) -->
-				<div class="cat-filters clearingfix" style="margin-top:20px;">
-					<strong><?php echo Kohana::lang('ui_main.other_ushahidi_instances');?> <span>[<a href="javascript:toggleLayer('sharing_switch_link', 'sharing_switch')" id="sharing_switch_link"><?php echo Kohana::lang('ui_main.hide'); ?></a>]</span></strong>
-				</div>
-				<ul id="sharing_switch" class="category-filters">
-					<?php
-					foreach ($shares as $share => $share_info)
-					{
-						$sharing_name = $share_info[0];
-						$sharing_color = $share_info[1];
-						echo '<li><a href="#" id="share_'. $share .'"><div class="swatch" style="background-color:#'.$sharing_color.'"></div>
-						<div>'.$sharing_name.'</div></a></li>';
-					}
-					?>
-				</ul>
-				<!-- /Layers -->
-				<?php
-			}
-			?>
-			
-			
-			<br />
-		
-			<!-- additional content -->
-			<?php
-			if (Kohana::config('settings.allow_reports'))
-			{
-				?>
-				<div class="additional-content">
-					<h5><?php echo Kohana::lang('ui_main.how_to_report'); ?></h5>
-					<ol>
-						<?php if (!empty($phone_array)) 
-						{ ?><li><?php echo Kohana::lang('ui_main.report_option_1')." "; ?> <?php foreach ($phone_array as $phone) {
-							echo "<strong>". $phone ."</strong>";
-							if ($phone != end($phone_array)) {
-								echo " or ";
-							}
-						} ?></li><?php } ?>
-						<?php if (!empty($report_email)) 
-						{ ?><li><?php echo Kohana::lang('ui_main.report_option_2')." "; ?> <a href="mailto:<?php echo $report_email?>"><?php echo $report_email?></a></li><?php } ?>
-						<?php if (!empty($twitter_hashtag_array)) 
-									{ ?><li><?php echo Kohana::lang('ui_main.report_option_3')." "; ?> <?php foreach ($twitter_hashtag_array as $twitter_hashtag) {
-						echo "<strong>". $twitter_hashtag ."</strong>";
-						if ($twitter_hashtag != end($twitter_hashtag_array)) {
-							echo " or ";
-						}
-						} ?></li><?php
-						} ?><li><a href="<?php echo url::site() . 'reports/submit/'; ?>"><?php echo Kohana::lang('ui_main.report_option_4'); ?></a></li>
-					</ol>
+					<tr><td colspan="3"><?php echo Kohana::lang('ui_main.no_reports'); ?></td></tr>
 
-				</div>
-			<?php } ?>
-			<!-- / additional content -->
-			
-			<?php
-			// Action::main_sidebar - Add Items to the Entry Page Sidebar
-			Event::run('ushahidi_action.main_sidebar');
-			?>
+					<?php
+					}
+					foreach ($incidents as $incident)
+					{
+						$incident_id = $incident->id;
+						$incident_title = text::limit_chars($incident->incident_title, 40, '...', True);
+						$incident_date = $incident->incident_date;
+						$incident_date = date('M j Y', strtotime($incident->incident_date));
+						$incident_location = $incident->location->location_name;
+            $incident_supporters = $incident->incident_supporters;
+            $categories = $incident->category;
+            $cat = "";
+            $first = true;
+            foreach ($categories as $category)
+            {
+              // Check for localization of parent category
+
+		          $l = Kohana::config('locale.language.0');
+              $translated_title = Category_Lang_Model::category_title($category->id,$l);
+
+              if($translated_title)
+              {
+                $display_title = $translated_title;
+              }else{
+                $display_title = $category->category_title;
+              }
+              if (!$first)
+              {
+                $cat . ", " . $display_title;
+              } else {
+                $cat = $display_title;
+                $first = false;
+              }
+            }
+					?>
+					<tr style="background-color: #e9eaec;">
+						<td><a href="<?php echo url::site() . 'reports/support/' . $incident_id; ?>"> <?php echo $incident_title ?></a></td>
+						<td><?php echo $incident_date; ?></td>
+						<td><?php echo $incident_location ?></td>
+						<td><img src="/themes/madeenaty/images/category.png" /></td>
+            <td>
+            <a href="" onclick="javascript:support('<?php echo $incident_id; ?>','oloader_<?php echo $incident_id; ?>');" class="support"><img src="/themes/madeenaty/images/support.png" /></a>
+            </td>
+						<td id="support_<?php echo $incident_id; ?>"><?php echo $incident_supporters ?></td>
+					</tr>
+					<?php
+					}
+					?>
+
+				</tbody>
+			</table>
+			<a class="more" href="<?php echo url::site() . 'reports/' ?>"><?php echo Kohana::lang('ui_main.view_more'); ?></a>
+	
 	
 		</div>
 		<!-- / right column -->
@@ -210,77 +138,6 @@
 
 		<!-- left content block -->
 		<div class="content-block-left">
-			<h5><?php echo Kohana::lang('ui_main.incidents_listed'); ?></h5>
-			<table class="table-list">
-				<thead>
-					<tr>
-						<th scope="col" class="title"><?php echo Kohana::lang('ui_main.title'); ?></th>
-						<th scope="col" class="location"><?php echo Kohana::lang('ui_main.location'); ?></th>
-						<th scope="col" class="date"><?php echo Kohana::lang('ui_main.category'); ?></th>
-            <th scope="col" class="location"><?php echo Kohana::lang('ui_main.supporters'); ?></th>
-						<th scope="col" class="date"><?php echo Kohana::lang('ui_main.date'); ?></th>
-						<th scope="col" class="location"><?php echo Kohana::lang('ui_main.support'); ?></th>
-					</tr>
-				</thead>
-				<tbody>
-					<?php
-						if ($total_items == 0)
-					{
-					?>
-					<tr><td colspan="3"><?php echo Kohana::lang('ui_main.no_reports'); ?></td></tr>
-
-					<?php
-					}
-					foreach ($incidents as $incident)
-					{
-						$incident_id = $incident->id;
-						$incident_title = text::limit_chars($incident->incident_title, 40, '...', True);
-						$incident_date = $incident->incident_date;
-						$incident_date = date('M j Y', strtotime($incident->incident_date));
-						$incident_location = $incident->location->location_name;
-            $incident_supporters = $incident->incident_supporters;
-            $categories = $incident->category;
-            $cat = "";
-            $first = true;
-            foreach ($categories as $category)
-            {
-              // Check for localization of parent category
-
-		          $l = Kohana::config('locale.language.0');
-              $translated_title = Category_Lang_Model::category_title($category->id,$l);
-
-              if($translated_title)
-              {
-                $display_title = $translated_title;
-              }else{
-                $display_title = $category->category_title;
-              }
-              if (!$first)
-              {
-                $cat . ", " . $display_title;
-              } else {
-                $cat = $display_title;
-                $first = false;
-              }
-            }
-					?>
-					<tr>
-						<td><a href="<?php echo url::site() . 'reports/support/' . $incident_id; ?>"> <?php echo $incident_title ?></a></td>
-						<td><?php echo $incident_location ?></td>
-						<td><?php echo $cat; ?></td>
-						<td id="support_<?php echo $incident_id; ?>"><?php echo $incident_supporters ?></td>
-						<td><?php echo $incident_date; ?></td>
-            <td>
-            <a href="" onclick="javascript:support('<?php echo $incident_id; ?>','oloader_<?php echo $incident_id; ?>');" class="support">+</a>
-            </td>
-					</tr>
-					<?php
-					}
-					?>
-
-				</tbody>
-			</table>
-			<a class="more" href="<?php echo url::site() . 'reports/' ?>"><?php echo Kohana::lang('ui_main.view_more'); ?></a>
 		</div>
 		<!-- / left content block -->
 
