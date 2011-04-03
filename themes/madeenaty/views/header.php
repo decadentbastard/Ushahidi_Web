@@ -45,6 +45,5 @@
 		</div>
 		<!-- / header -->
 
-		<div class="background layoutleft">
 
 				<!-- mainmenu -->

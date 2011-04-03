@@ -2,7 +2,7 @@
 
 /* reset */
 body,div,dl,dt,dd,ul,ol,li,pre,form,fieldset,input,textarea,p,blockquote,th,td{
-    margin: 0;
+ main   margin: 0;
     padding: 0;
 }
 
@@ -286,6 +286,11 @@ div#underfooter{
     overflow: hidden;
 }
 
+.splash-floatbox{
+    overflow: hidden;
+    width: 1000px;
+}
+
 /* searchbox */
 div#searchbox{
     position: absolute;
@@ -515,6 +520,12 @@ div#map-subscribe-tab p {
 }
 
 /* map */
+div.splash-map {
+    border: #999 1px solid;
+    width: 873px;
+    height: 566px;
+	position:relative;
+}
 div.map {
     border: #999 1px solid;
     width: 573px;

@@ -115,22 +115,35 @@ class Main_Controller extends Template_Controller {
 	  return $categories;
 	}
 
-    public function index()
+    public function index() 
+    {
+        $this->template->header->this_page = 'home';
+        $this->template->content = new View('splash');
+		    $div_map = new View('splash_map');
+		    $this->template->content->div_map = $div_map;
+        $this->body();
+    }
+    public function main()
     {
         $this->template->header->this_page = 'home';
         $this->template->content = new View('main');
+		    $div_map = new View('main_map');
+		    $this->template->content->div_map = $div_map;
+        $this->body();
 
+	  }
+
+    private function body()
+    {
 		// Cacheable Main Controller
 		$this->is_cachable = TRUE;
 
 		// Map and Slider Blocks
-		$div_map = new View('main_map');
 		$div_timeline = new View('main_timeline');
 			// Filter::map_main - Modify Main Map Block
 			Event::run('ushahidi_filter.map_main', $div_map);
 			// Filter::map_timeline - Modify Main Map Block
 			Event::run('ushahidi_filter.map_timeline', $div_timeline);
-		$this->template->content->div_map = $div_map;
 		$this->template->content->div_timeline = $div_timeline;
 
 		// Check if there is a site message
@@ -448,6 +461,6 @@ class Main_Controller extends Template_Controller {
 
 		// Rebuild Header Block
 		$this->template->header->header_block = $this->themes->header_block();
-	}
+  }
 
 } // End Main

@@ -1,7 +1,4 @@
 <!-- main body -->
-<div id="green-header" style="width:930px; height: 45px; background: #9baf55; margin-left: 10px; margin-right: 10px; margin-bottom: 50px;" >
-  
-</div>
 <div id="main" class="clearingfix" style="padding: 6px;">
 	<div id="mainmiddle" class="floatbox withright">
 
@@ -12,86 +9,10 @@
 	<?php } ?>
 
 		<!-- right column -->
-		<div id="right" class="clearingfix" style="border: solid 1px #999; margin-top: 41px; height: 381px; width: 350px; padding-top: 5px;">
-			<h5><?php echo Kohana::lang('ui_main.incidents_listed'); ?></h5>
-			<table class="table-list">
-				<thead>
-					<tr>
-						<th scope="col" class="title"><?php echo Kohana::lang('ui_main.title'); ?></th>
-						<th scope="col" class="date"><?php echo Kohana::lang('ui_main.date'); ?></th>
-						<th scope="col" class="location"><?php echo Kohana::lang('ui_main.location'); ?></th>
-						<th scope="col" class="date"><?php echo Kohana::lang('ui_main.category'); ?></th>
-						<th scope="col" class="location"><?php echo Kohana::lang('ui_main.support'); ?></th>
-            <th scope="col" class="location"><?php echo Kohana::lang('ui_main.supporters'); ?></th>
-					</tr>
-				</thead>
-				<tbody>
-					<?php
-						if ($total_items == 0)
-					{
-					?>
-					<tr><td colspan="3"><?php echo Kohana::lang('ui_main.no_reports'); ?></td></tr>
-
-					<?php
-					}
-					foreach ($incidents as $incident)
-					{
-						$incident_id = $incident->id;
-						$incident_title = text::limit_chars($incident->incident_title, 40, '...', True);
-						$incident_date = $incident->incident_date;
-						$incident_date = date('M j Y', strtotime($incident->incident_date));
-						$incident_location = $incident->location->location_name;
-            $incident_supporters = $incident->incident_supporters;
-            $categories = $incident->category;
-            $cat = "";
-            $first = true;
-            foreach ($categories as $category)
-            {
-              // Check for localization of parent category
-
-		          $l = Kohana::config('locale.language.0');
-              $translated_title = Category_Lang_Model::category_title($category->id,$l);
-
-              if($translated_title)
-              {
-                $display_title = $translated_title;
-              }else{
-                $display_title = $category->category_title;
-              }
-              if (!$first)
-              {
-                $cat . ", " . $display_title;
-              } else {
-                $cat = $display_title;
-                $first = false;
-              }
-            }
-					?>
-					<tr style="background-color: #e9eaec;">
-						<td><a href="<?php echo url::site() . 'reports/support/' . $incident_id; ?>"> <?php echo $incident_title ?></a></td>
-						<td><?php echo $incident_date; ?></td>
-						<td><?php echo $incident_location ?></td>
-						<td><img src="/themes/madeenaty/images/category.png" /></td>
-            <td>
-            <a href="" onclick="javascript:support('<?php echo $incident_id; ?>','oloader_<?php echo $incident_id; ?>');" class="support"><img src="/themes/madeenaty/images/support.png" /></a>
-            </td>
-						<td id="support_<?php echo $incident_id; ?>"><?php echo $incident_supporters ?></td>
-					</tr>
-					<?php
-					}
-					?>
-
-				</tbody>
-			</table>
-			<a class="more" href="<?php echo url::site() . 'reports/' ?>"><?php echo Kohana::lang('ui_main.view_more'); ?></a>
-	
-	
-		</div>
-		<!-- / right column -->
 	
 		<!-- content column -->
 		<div id="content" class="clearingfix">
-			<div class="floatbox">
+			<div class="splash-floatbox">
 			
 				<!-- filters
 				<div class="filters clearingfix">
@@ -112,14 +33,6 @@
 				</div>
 				 / filters -->
 		
-        <div id="map-tab-cnt">	
-          <div id="map-submit-tab">
-            <p> Submit <br> a report </p>
-          </div>	
-          <div id="map-subscribe-tab">
-            <p> Subscribe to this region </p>
-          </div>	
-        </div>
 				<?php								
 				// Map and Timeline Blocks
 				echo $div_map;
