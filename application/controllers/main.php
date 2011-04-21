@@ -123,7 +123,7 @@ class Main_Controller extends Template_Controller {
 		    $this->template->content->div_map = $div_map;
         $this->body();
     }
-    public function main()
+    public function region()
     {
         $this->template->header->this_page = 'home';
         $this->template->content = new View('main');

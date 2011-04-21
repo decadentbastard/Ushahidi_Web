@@ -1,5 +1,5 @@
 			<!-- category filters -->
-			<div class="cat-filters clearingfix">
+			<div>
 				<strong><?php echo Kohana::lang('ui_main.category_filter');?> <span>[<a href="javascript:toggleLayer('category_switch_link', 'category_switch')" id="category_switch_link"><?php echo Kohana::lang('ui_main.hide'); ?></a>]</span></strong>
 			</div>
 		

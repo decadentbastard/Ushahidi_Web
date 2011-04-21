@@ -380,7 +380,7 @@
 			*/
 			var options = {
 				units: "mi",
-				numZoomLevels: 16,
+				numZoomLevels: 21,
 				controls:[],
 				projection: proj_900913,
 				'displayProjection': proj_4326,
@@ -425,9 +425,9 @@
 			{
 				var catID = this.id.substring(4);
 				var catSet = 'cat_' + this.id.substring(4);
-				$("a[id^='cat_']").removeClass("active"); // Remove All active
+				//$("a[id^='cat_']").removeClass("active"); // Remove All active
 				$("[id^='child_']").hide(); // Hide All Children DIV
-				$("#cat_" + catID).addClass("active"); // Add Highlight
+				//$("#cat_" + catID).addClass("active"); // Add Highlight
 				$("#child_" + catID).show(); // Show children DIV
 				$(this).parents("div").show();
 				

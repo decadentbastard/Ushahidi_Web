@@ -523,9 +523,9 @@ ul.category-filters li a{
 }
 
 ul.category-filters li a:hover, ul.category-filters li a.active {
-    color: #FFFFFF;
-    background-color: #3484AC;
-    border: #3484AC 1px solid;
+/*    color: #FFFFFF; */
+/*    background-color: #3484AC; */
+/*    border: #3484AC 1px solid; */
 }
 
 ul.category-filters li.child{

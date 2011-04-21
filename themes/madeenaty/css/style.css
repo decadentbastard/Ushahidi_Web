@@ -484,6 +484,24 @@ a.share{
     height: 18px;
 }
 
+div#splash-tab-cnt {
+  width: 250px;
+  height: 41px;
+  margin-left: 730px;
+}
+
+div#splash-submit-tab {
+    background: url('../images/tab-inverted.png') no-repeat center;
+    height: 42px;
+    width: 122px;
+    float: left;
+}
+
+div#splash-submit-tab p {
+    margin-left: 35px;
+    font-size: 16px;
+    color: #fff;
+}
 
 div#map-tab-cnt {
   width: 250px;
@@ -519,11 +537,26 @@ div#map-subscribe-tab p {
     color: #fff;
 }
 
+div#region-select {
+    position: absolute;
+    top: 200px;
+    left: 300px;
+    bottom: 850px;
+    height 1880px;
+    width: 230px;
+    background: #9baf55;
+    z-index: 1000;
+    color: #fff;
+    line-height: 1.1;
+    font-size: 22px;
+    padding: 10px;
+}
+
 /* map */
 div.splash-map {
     border: #999 1px solid;
-    width: 873px;
-    height: 566px;
+    width: 943px;
+    height: 466px;
 	position:relative;
 }
 div.map {
@@ -632,8 +665,10 @@ ul.category-filters li a{
 }
 
 ul.category-filters li a:hover, ul.category-filters li a.active {
+  /*
     color: #FFFFFF;
-    background-color: #980000;
+    background-color: none; 
+  */
 }
 
 ul.category-filters li.child{
