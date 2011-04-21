@@ -1,5 +1,5 @@
 <!-- main body -->
-<div id="main" class="clearingfix" style="padding: 6px;">
+<div id="main" class="" style="padding: 6px;">
 	<div id="mainmiddle" class="floatbox withright">
 
 	<?php if($site_message != '') { ?>
@@ -11,7 +11,7 @@
 		<!-- right column -->
 	
 		<!-- content column -->
-		<div id="content" class="clearingfix">
+		<div id="content" class="">
 			<div class="splash-floatbox">
 			
 				<!-- filters
@@ -98,7 +98,7 @@
 			{
 				?>
 				<!-- Layers (KML/KMZ) -->
-				<div class="cat-filters clearingfix" style="margin-top:20px;">
+				<div class="cat-filters">
 					<strong><?php echo Kohana::lang('ui_main.layers_filter');?> <span>[<a href="javascript:toggleLayer('kml_switch_link', 'kml_switch')" id="kml_switch_link"><?php echo Kohana::lang('ui_main.hide'); ?></a>]</span></strong>
 				</div>
 				<ul id="kml_switch" class="category-filters">
@@ -129,7 +129,7 @@
 			{
 				?>
 				<!-- Layers (Other Ushahidi Layers) -->
-				<div class="cat-filters clearingfix" style="margin-top:20px;">
+				<div class="cat-filters" style="margin-top:20px;">
 					<strong><?php echo Kohana::lang('ui_main.other_ushahidi_instances');?> <span>[<a href="javascript:toggleLayer('sharing_switch_link', 'sharing_switch')" id="sharing_switch_link"><?php echo Kohana::lang('ui_main.hide'); ?></a>]</span></strong>
 				</div>
 				<ul id="sharing_switch" class="category-filters">
@@ -167,11 +167,9 @@
 <div class="content-container">
 
 	<!-- content blocks -->
-	<div class="content-blocks clearingfix">
+	<div class="content-blocks">
 
 		<!-- left content block -->
-		<div class="content-block-left">
-		</div>
 		<!-- / left content block -->
 
 		<!-- right content block -->
