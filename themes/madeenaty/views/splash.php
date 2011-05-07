@@ -51,8 +51,16 @@
 			<ul id="category_switch" class="category-filters">
 				<li><a id="cat_0" href="#"><span><img src="/themes/madeenaty/images/category.png" /></span><span class="category-title"><?php echo Kohana::lang('ui_main.all_categories');?></span></a></li>
 				<?php
+          $cat_counter = 1;
 					foreach ($categories as $category => $category_info)
 					{
+            if ($cat_counter%3 == 0 and $cat_counter != (count($categories) + 1)  ) {
+              $column = $cat_counter/3;
+              $left = $column*180;  
+              $bottom = $column*175;
+              echo "</ul><ul class='category-filters category-column' style='margin-left:" . $left . "px; bottom:" . $bottom ."px;'>";
+            } 
+            $cat_counter++;
 						$category_title = $category_info[0];
 						$category_color = $category_info[1];
 						$category_image = '';

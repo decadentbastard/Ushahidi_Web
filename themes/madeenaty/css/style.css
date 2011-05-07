@@ -541,7 +541,7 @@ div#region-select {
     position: absolute;
     top: 200px;
     left: 300px;
-    bottom: 800px;
+    bottom: 1050px;
     height 1880px;
     width: 230px;
     background: #9baf55;
@@ -633,6 +633,11 @@ div.cat-filters span{
 }
 div.cat-filters span a{
 	color:#666;
+}
+
+ul.category-column {
+  position: relative;
+  bottom: 175px;
 }
 
 ul.category-filters{
