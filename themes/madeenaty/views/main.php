@@ -45,10 +45,21 @@
             $categories = $incident->category;
             $cat = "";
             $first = true;
+            $category_image = "";
+            $previous = ORM::factory('vote')
+                        ->where('incident_id',$incident_id)
+                        ->where('vote_ip',$_SERVER['REMOTE_ADDR'])
+                        ->find();
             foreach ($categories as $category)
             {
               // Check for localization of parent category
-
+              $image_filename = $category->category_image;
+              if($image_filename != NULL && file_exists(Kohana::config('upload.relative_directory').'/'.$image_filename)) {
+                $category_image = html::image(array(
+                  'src'=>Kohana::config('upload.relative_directory').'/'.$image_filename,
+                  'style'=>'float:left;padding-right:5px;'
+                  ));
+              }
 		          $l = Kohana::config('locale.language.0');
               $translated_title = Category_Lang_Model::category_title($category->id,$l);
 
@@ -71,9 +82,15 @@
 						<td><a href="<?php echo url::site() . 'reports/support/' . $incident_id; ?>"> <?php echo $incident_title ?></a></td>
 						<td><?php echo $incident_date; ?></td>
 						<td><?php echo $incident_location ?></td>
-						<td><img src="/themes/madeenaty/images/category.png" /></td>
+						<td><?php echo $category_image; ?></td>
             <td>
-            <a href="" onclick="javascript:support('<?php echo $incident_id; ?>','oloader_<?php echo $incident_id; ?>');" class="support"><img src="/themes/madeenaty/images/support.png" /></a>
+            <?php if ($previous->id == 0) { ?>
+            <a href="" onclick="javascript:support('<?php echo $incident_id; ?>','oloader_<?php echo $incident_id; ?>');" class="support">
+              <img  id="support_<?php echo $incident_id . '_img' ; ?>" src="/themes/madeenaty/images/support.png" />
+            </a>
+            <?php } else { ?>
+            <img src="/themes/madeenaty/images/no_support.png" />
+            <?php } ?>
             </td>
 						<td id="support_<?php echo $incident_id; ?>"><?php echo $incident_supporters ?></td>
 					</tr>

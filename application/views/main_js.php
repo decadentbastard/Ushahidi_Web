@@ -634,6 +634,7 @@
 					if (data.status == 'saved'){
             $('#oup_' + id).attr("src","<?php echo url::base() . 'media/img/'; ?>gray_up.png");
 						$('#support_' + id).html(data.supporters);
+						$('#support_' + id + '_img').attr("src","/themes/madeenaty/images/no_support.png");
 					} else {
 						alert('ERROR!');
 					}
