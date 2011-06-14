@@ -3,12 +3,12 @@
 What's happening <br> in your neighborhood?
   <div style="padding: 5px; margin-left:5px;">
     <form action="/main/region">
-      <select style="width:210px;" onchange="this.form.submit()">
+      <select name="region" id="region" style="width:210px;" onchange="this.form.submit()">
       <option>Select your region</option>
-      <option>Beirut</option>
-      <option>South of Lebanon</option>
-      <option>Bekaa</option>
-      <option>Tripoli</option>
+      <option value="0">Beirut</option>
+      <option value="1">South of Lebanon</option>
+      <option value="2">Bekaa</option>
+      <option value="3">Tripoli</option>
       </select>
     </form>
   </div>

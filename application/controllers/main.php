@@ -123,17 +123,26 @@ class Main_Controller extends Template_Controller {
 		    $this->template->content->div_map = $div_map;
         $this->body();
     }
-    public function region()
+
+    public function region($region_id = 0)
     {
         $this->template->header->this_page = 'home';
         $this->template->content = new View('main');
 		    $div_map = new View('main_map');
 		    $this->template->content->div_map = $div_map;
-        $this->body();
+        if (isset($_GET['region']) && !empty($_GET['region'])) {
+          $this->session->set('region', $_GET['region']);
+        }
+        if ($this->session->get('region', FALSE)) {
+          echo "amer" . $_SESSION['region'];
+          $this->template->content->region = $_SESSION['region'];
+        }
+        $city = ORM::factory('city')->where('id', '95')->find();
+        $this->body($city->city_lat, $city->city_lon);
 
 	  }
 
-    private function body()
+    private function body($lat = 360, $long = 360)
     {
 		// Cacheable Main Controller
 		$this->is_cachable = TRUE;
@@ -448,9 +457,15 @@ class Main_Controller extends Template_Controller {
 		$this->themes->js->latTo = $latTo;
 
 		$this->themes->js->default_map = Kohana::config('settings.default_map');
-		$this->themes->js->default_zoom = Kohana::config('settings.default_zoom');
-		$this->themes->js->latitude = Kohana::config('settings.default_lat');
-		$this->themes->js->longitude = Kohana::config('settings.default_lon');
+		//$this->themes->js->default_zoom = Kohana::config('settings.default_zoom');
+		$this->themes->js->default_zoom = 10; 
+    if ($lat < 360 and $long < 360) {
+      $this->themes->js->latitude = $lat;
+      $this->themes->js->longitude = $long;
+    } else {
+      $this->themes->js->latitude = Kohana::config('settings.default_lat');
+      $this->themes->js->longitude = Kohana::config('settings.default_lon');
+    }
 		$this->themes->js->default_map_all = Kohana::config('settings.default_map_all');
 
 		$this->themes->js->active_startDate = $display_startDate;

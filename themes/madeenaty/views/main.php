@@ -42,7 +42,7 @@
 						$incident_date = date('M j Y', strtotime($incident->incident_date));
 						$incident_location = $incident->location->location_name;
             $incident_supporters = $incident->incident_supporters;
-            $categories = $incident->category;
+            $incident_categories = $incident->category;
             $cat = "";
             $first = true;
             $category_image = "";
@@ -50,7 +50,7 @@
                         ->where('incident_id',$incident_id)
                         ->where('vote_ip',$_SERVER['REMOTE_ADDR'])
                         ->find();
-            foreach ($categories as $category)
+            foreach ($incident_categories as $category)
             {
               // Check for localization of parent category
               $image_filename = $category->category_image;
@@ -143,6 +143,60 @@
 				echo $div_timeline;
 				?>
 			</div>
+			<!-- category filters -->
+		
+			<ul id="category_switch" class="category-filters">
+				<li><a id="cat_0" href="#"><span><img src="/themes/madeenaty/images/category.png" /></span><span class="category-title"><?php echo Kohana::lang('ui_main.all_categories');?></span></a></li>
+				<?php
+          $cat_counter = 1;
+					foreach ($categories as $category => $category_info)
+					{
+            if ($cat_counter%3 == 0 and $cat_counter != (count($categories) + 1)  ) {
+              $column = $cat_counter/3;
+              $left = $column*180;  
+              $bottom = $column*175;
+              echo "</ul><ul class='category-filters category-column' style='margin-left:" . $left . "px; bottom:" . $bottom ."px;'>";
+            } 
+            $cat_counter++;
+						$category_title = $category_info[0];
+						$category_color = $category_info[1];
+						$category_image = '';
+						$color_css = 'class="swatch" style="background-color:#'.$category_color.'"';
+						if($category_info[2] != NULL && file_exists(Kohana::config('upload.relative_directory').'/'.$category_info[2])) {
+							$category_image = html::image(array(
+								'src'=>Kohana::config('upload.relative_directory').'/'.$category_info[2],
+								'style'=>'float:left;padding-right:5px;'
+								));
+							$color_css = '';
+						}
+						echo '<li><a href="#" id="cat_'. $category .'"><span '.$color_css.'>'.$category_image.'</span><span class="category-title">'.$category_title.'</span></a>';
+						// Get Children
+						echo '<div class="hide" id="child_'. $category .'">';
+                                                if( sizeof($category_info[3]) != 0)
+                                                {
+                                                    echo '<ul>';
+                                                    foreach ($category_info[3] as $child => $child_info)
+                                                    {
+                                                            $child_title = $child_info[0];
+                                                            $child_color = $child_info[1];
+                                                            $child_image = '';
+                                                            $color_css = 'class="swatch" style="background-color:#'.$child_color.'"';
+                                                            if($child_info[2] != NULL && file_exists(Kohana::config('upload.relative_directory').'/'.$child_info[2])) {
+                                                                    $child_image = html::image(array(
+                                                                            'src'=>Kohana::config('upload.relative_directory').'/'.$child_info[2],
+                                                                            'style'=>'float:left;padding-right:5px;'
+                                                                            ));
+                                                                    $color_css = '';
+                                                            }
+                                                            echo '<li style="padding-left:20px;"><a href="#" id="cat_'. $child .'"><span '.$color_css.'>'.$child_image.'</span><span class="category-title">'.$child_title.'</span></a></li>';
+                                                    }
+                                                    echo '</ul>';
+                                                }
+						echo '</div></li>';
+					}
+				?>
+			</ul>
+			<!-- / category filters -->
 		</div>
 		<!-- / content column -->
 
