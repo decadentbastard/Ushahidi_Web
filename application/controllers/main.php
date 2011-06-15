@@ -132,12 +132,14 @@ class Main_Controller extends Template_Controller {
 		    $this->template->content->div_map = $div_map;
         if (isset($_GET['region']) && !empty($_GET['region'])) {
           $this->session->set('region', $_GET['region']);
+          $region_id = $_GET['region'];
         }
         if ($this->session->get('region', FALSE)) {
-          echo "amer" . $_SESSION['region'];
           $this->template->content->region = $_SESSION['region'];
+          $region_id = $_SESSION['region'];
         }
-        $city = ORM::factory('city')->where('id', '95')->find();
+        $region = ORM::factory('region')->where('id', $region_id)->find();
+        $city = ORM::factory('city')->where('id', $region->city)->find();
         $this->body($city->city_lat, $city->city_lon);
 
 	  }

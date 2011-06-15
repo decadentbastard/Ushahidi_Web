@@ -1,6 +1,15 @@
 <!-- main body -->
 <div id="green-header" style="width:930px; height: 45px; background: #9baf55; margin-left: 10px; margin-right: 10px; margin-bottom: 50px;" >
-  
+    <span style="margin-bottom: 0px; padding-bottom: 0px; font-size: 20px;"> Region - Current Reports </span>  
+    <form action="/main/region" style="display: inline; padding-left: 150px; padding-top: 8px;">
+      <select name="region" id="region" style="width:210px;" onchange="this.form.submit()">
+      <option>Select your region</option>
+      <option value="0">Beirut</option>
+      <option value="1">South of Lebanon</option>
+      <option value="2">Bekaa</option>
+      <option value="3">Tripoli</option>
+      </select>
+    </form>
 </div>
 <div id="main" class="clearingfix" style="padding: 6px;">
 	<div id="mainmiddle" class="floatbox withright">
